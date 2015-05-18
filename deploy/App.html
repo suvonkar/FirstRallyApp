@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>firstrallyapp</title>
+
+    <script type="text/javascript" src="/apps/2.0/sdk.js"></script>
+
+    <script type="text/javascript">
+        Rally.onReady(function () {
+                Ext.define("CustomApp",{extend:"Rally.app.App",componentCls:"app",launch:function(){console.log("Hello World...."),this._loadData(),console.log("what is this?",this)},_loadData:function(){console.log("Inside dataload");var myStore=Ext.create("Rally.data.wsapi.Store",{model:"User Story",autoLoad:!0,listeners:{load:function(myStore,myData,success){console.log("my store is ",myStore),console.log("my data is ",myData),console.log("this is ",this),this._loadDataGrid(myStore)},scope:this},fetch:["FormattedID","Name","ScheduleState"]})},_loadDataGrid:function(myDataStore){var myGrid=Ext.create("Rally.ui.grid.Grid",{store:myDataStore,columnCfgs:["FormattedID","Name","ScheduleState"]});this.add(myGrid)}});
+
+            Rally.launchApp('CustomApp', {
+                name:"firstrallyapp",
+	            parentRepos:""
+            });
+
+        });
+    </script>
+
+
+    <style type="text/css">
+        
+    </style>
+</head>
+<body>
+</body>
+</html>
